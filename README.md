@@ -1,6 +1,6 @@
 # Ar-Stemmer
 
-Ar-Stemmer is pure Ruby port of ArabicStemmer Java class from Lucene.
+Ar-Stemmer is pure Ruby port of Arabic Stemmer from Lucene.
 
 ## Installation
 

@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Tomoya Hirano"]
   spec.email         = ["hiranotomoya@gmail.com"]
 
-  spec.summary       = "Ar-Stemmer is pure Ruby port of ArabicStemmer Java class from Lucene."
-  spec.description   = "Ar-Stemmer is pure Ruby port of ArabicStemmer Java class from Lucene."
+  spec.summary       = "Ar-Stemmer is pure Ruby port of Arabic Stemmer from Lucene."
+  spec.description   = "Ar-Stemmer is pure Ruby port of Arabic Stemmer from Lucene."
   spec.homepage      = "https://github.com/tomoya55/ar-stemmer"
   spec.license       = "MIT"
 

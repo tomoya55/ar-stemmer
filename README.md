@@ -1,5 +1,7 @@
 # Ar-Stemmer
 
+[![Build Status](https://travis-ci.org/tomoya55/ar-stemmer.svg?branch=master)](https://travis-ci.org/tomoya55/ar-stemmer)
+
 Ar-Stemmer is pure Ruby port of Arabic Stemmer from Lucene.
 
 ## Installation

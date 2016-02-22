@@ -30,6 +30,12 @@ ArStemmer.stem("الدونات")
 "دونات"
 ```
 
+When you want to turn off the specific rules for your own purpose, you can pass the name to `disable` option.
+
+```
+ArStemmer.stem(word, disable: [:yeh_noon, :waw_noon])
+```
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).

@@ -85,6 +85,13 @@ class ArStemmerTest < Minitest::Test
     assert_stem "English", "English"
   end
 
+  def test_disable_option
+    yn_word = "ساهدين"
+    wn_word = "ساهدون"
+    assert_equal yn_word, ArStemmer.stem(yn_word, disable: [:yeh_noon, :waw_noon])
+    assert_equal wn_word, ArStemmer.stem(wn_word, disable: [:yeh_noon, :waw_noon])
+  end
+
   def assert_stem(word, stem)
     assert_equal(stem, ArStemmer.stem(word))
   end

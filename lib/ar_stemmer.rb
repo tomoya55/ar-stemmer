@@ -15,37 +15,38 @@ class ArStemmer
   WAW = "\u0648"
   YEH = "\u064A"
 
-  PREFIXES = [
-    ALEF + LAM,
-    WAW + ALEF + LAM,
-    BEH + ALEF + LAM,
-    KAF + ALEF + LAM,
-    FEH + ALEF + LAM,
-    LAM + LAM,
-    WAW
-  ]
+  PREFIXES = {
+    alef_lam:     ALEF + LAM,
+    waw_alef_lam: WAW + ALEF + LAM,
+    beh_alef_lam: BEH + ALEF + LAM,
+    kaf_alef_lam: KAF + ALEF + LAM,
+    feh_alef_lam: FEH + ALEF + LAM,
+    lam_lam:      LAM + LAM,
+    waw:          WAW
+  }
 
-  SUFFIXES = [
-    HEH + ALEF,
-    ALEF + NOON,
-    ALEF + TEH,
-    WAW + NOON,
-    YEH + NOON,
-    YEH + HEH,
-    YEH + TEH_MARBUTA,
-    HEH,
-    TEH_MARBUTA,
-    YEH
-  ]
+  SUFFIXES = {
+    heh_alef:        HEH + ALEF,
+    alef_noon:       ALEF + NOON,
+    alef_teh:        ALEF + TEH,
+    waw_noon:        WAW + NOON,
+    yeh_noon:        YEH + NOON,
+    yeh_heh:         YEH + HEH,
+    yeh_teh_marbuta: YEH + TEH_MARBUTA,
+    heh:             HEH,
+    teh_marbuta:     TEH_MARBUTA,
+    yeh:             YEH
+  }
 
-  def self.stem(word)
-    new(word).stem
+  def self.stem(word, options = {})
+    new(word, options).stem
   end
 
-  attr_reader :word
+  attr_reader :word, :disabled
 
-  def initialize(word)
+  def initialize(word, options = {})
     @word = word.dup
+    @disabled = options[:disable] || []
   end
 
   def stem
@@ -54,33 +55,39 @@ class ArStemmer
     word
   end
 
-  def stem_prefix
-    PREFIXES.each do |prefix|
-      @word = word[prefix.length .. -1] if starts_with_check_length(word, prefix)
-    end
-  end
+  private
 
-  def stem_suffix
-    SUFFIXES.each do |suffix|
-      @word = word[0 .. -(suffix.length + 1)] if ends_with_check_length(word, suffix)
+    def rules(rule_set)
+      rule_set.reject {|k, v| disabled.include?(k) }.values
     end
-  end
 
-  def starts_with_check_length(word, prefix)
-    if prefix.length == 1 && word.length < 4 # wa- prefix requires at least 3 characters
-      false
-    elsif word.length < prefix.length + 2
-      false
-    else
-      word.start_with?(prefix)
+    def stem_prefix
+      rules(PREFIXES).each do |prefix|
+        @word = word[prefix.length .. -1] if starts_with_check_length(word, prefix)
+      end
     end
-  end
 
-  def ends_with_check_length(word, suffix)
-    if word.length < suffix.length + 2
-      false
-    else
-      word.end_with?(suffix)
+    def stem_suffix
+      rules(SUFFIXES).each do |suffix|
+        @word = word[0 .. -(suffix.length + 1)] if ends_with_check_length(word, suffix)
+      end
     end
-  end
+
+    def starts_with_check_length(word, prefix)
+      if prefix.length == 1 && word.length < 4 # wa- prefix requires at least 3 characters
+        false
+      elsif word.length < prefix.length + 2
+        false
+      else
+        word.start_with?(prefix)
+      end
+    end
+
+    def ends_with_check_length(word, suffix)
+      if word.length < suffix.length + 2
+        false
+      else
+        word.end_with?(suffix)
+      end
+    end
 end

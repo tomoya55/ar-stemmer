@@ -42,11 +42,18 @@ class ArStemmer
     new(word, options).stem
   end
 
-  attr_reader :word, :disabled
+  attr_reader :word, :excepts, :onlys
 
   def initialize(word, options = {})
     @word = word.dup
-    @disabled = options[:disable] || []
+
+    @onlys = []
+    @excepts = []
+    if options[:only]
+      @onlys = options[:only]
+    elsif options[:except]
+      @excepts = options[:except]
+    end
   end
 
   def stem
@@ -58,7 +65,10 @@ class ArStemmer
   private
 
     def rules(rule_set)
-      rule_set.reject {|k, v| disabled.include?(k) }.values
+      rule_set
+        .reject {|k, v| excepts.any? ? excepts.include?(k) : false }
+        .select {|k, v| onlys.any? ? onlys.include?(k) : true }
+        .values
     end
 
     def stem_prefix

@@ -30,11 +30,14 @@ ArStemmer.stem("الدونات")
 "دونات"
 ```
 
-When you want to turn off the specific rules for your own purpose, you can pass the name to `disable` option.
+When you want to turn on/off the specific rules for your own purpose, you can pass the name to `only/except` option.
 
 ```
-ArStemmer.stem(word, disable: [:yeh_noon, :waw_noon])
+ArStemmer.stem(word, only: [:alef_lam, :waw_alef_lam])
+ArStemmer.stem(word, except: [:yeh_noon, :waw_noon])
 ```
+
+You can find the rule names in [the source code](https://github.com/tomoya55/ar-stemmer/blob/master/lib/ar_stemmer.rb#L18-L39).
 
 ## License
 

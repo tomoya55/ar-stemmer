@@ -29,6 +29,10 @@ class ArStemmerTest < Minitest::Test
     assert_stem "وحسن", "حسن"
   end
 
+  def test_beh_prefix
+    assert_stem "برز", "رز"
+  end
+
   def test_ah_suffix
     assert_stem "زوجها", "زوج"
   end
@@ -77,8 +81,11 @@ class ArStemmerTest < Minitest::Test
     assert_stem "ساهدهات", "ساهد"
   end
 
-  def test_shouldnt_stem
+  def test_shouldnt_stem_connectors
     assert_stem "الو", "الو"
+    assert_stem "ول",  "ول"
+    assert_stem "فل",  "فل"
+    assert_stem "بل",  "بل"
   end
 
   def test_non_arabic

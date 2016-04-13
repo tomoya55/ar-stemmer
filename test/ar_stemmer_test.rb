@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class ArStemmerTest < Minitest::Test
   def test_al_prefix
@@ -31,6 +31,12 @@ class ArStemmerTest < Minitest::Test
 
   def test_beh_prefix
     assert_stem "برز", "رز"
+  end
+
+  def test_stem_prefix_and_stop
+    assert_stem "البيض", "بيض"
+    assert_stem "البسبوسة", "بسبوس"
+    assert_stem "بالبطاطا", "بطاطا"
   end
 
   def test_ah_suffix

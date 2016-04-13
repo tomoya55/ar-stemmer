@@ -74,7 +74,7 @@ class ArStemmer
 
     def stem_prefix
       rules(PREFIXES).each do |prefix|
-        @word = word[prefix.length .. -1] if starts_with_check_length(word, prefix)
+        return @word = word[prefix.length .. -1] if starts_with_check_length(word, prefix)
       end
     end
 

@@ -1,4 +1,4 @@
-# ArStemmer is a pure ruby port of Lucene's ArabicStemmer class
+# ArStemmer is a ruby port of Lucene's ArabicStemmer class with extensions
 #
 # https://github.com/apache/lucene-solr/blob/master/lucene/analysis/common/src/java/org/apache/lucene/analysis/ar/ArabicStemmer.java
 class ArStemmer

@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "ar-stemmer"
-  spec.version       = "0.3.0"
+  spec.version       = "0.4.0"
   spec.authors       = ["Tomoya Hirano"]
   spec.email         = ["hiranotomoya@gmail.com"]
 
-  spec.summary       = "Ar-Stemmer is pure Ruby port of Arabic Stemmer from Lucene."
-  spec.description   = "Ar-Stemmer is pure Ruby port of Arabic Stemmer from Lucene."
+  spec.summary       = "Ar-Stemmer is a Ruby port of Arabic Stemmer from Lucene with extensions."
+  spec.description   = "Ar-Stemmer is a Ruby port of Arabic Stemmer from Lucene with extensions."
   spec.homepage      = "https://github.com/tomoya55/ar-stemmer"
   spec.license       = "MIT"
 

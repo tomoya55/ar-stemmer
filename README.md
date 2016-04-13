@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tomoya55/ar-stemmer.svg?branch=master)](https://travis-ci.org/tomoya55/ar-stemmer)
 
-Ar-Stemmer is pure Ruby port of Arabic Stemmer from Lucene.
+Ar-Stemmer is a Ruby port of Arabic Stemmer from Lucene with some extensions.
 
 ## Installation
 
@@ -37,7 +37,7 @@ ArStemmer.stem(word, only: [:alef_lam, :waw_alef_lam])
 ArStemmer.stem(word, except: [:yeh_noon, :waw_noon])
 ```
 
-You can find the rule names in [the source code](https://github.com/tomoya55/ar-stemmer/blob/master/lib/ar_stemmer.rb#L18-L39).
+You can find the rule names in [the source code](https://github.com/tomoya55/ar-stemmer/blob/master/lib/ar_stemmer.rb#L18-L40).
 
 ## License
 

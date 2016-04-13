@@ -1,19 +1,19 @@
-# ArStemmer is a pure ruby port of Lucene's ArabicStemmer class
+# ArStemmer is a ruby port of Lucene's ArabicStemmer class with extensions
 #
 # https://github.com/apache/lucene-solr/blob/master/lucene/analysis/common/src/java/org/apache/lucene/analysis/ar/ArabicStemmer.java
 class ArStemmer
 
-  ALEF = "\u0627"
-  BEH = "\u0628"
-  TEH_MARBUTA = "\u0629"
-  TEH = "\u062A"
-  FEH = "\u0641"
-  KAF = "\u0643"
-  LAM = "\u0644"
-  NOON = "\u0646"
-  HEH = "\u0647"
-  WAW = "\u0648"
-  YEH = "\u064A"
+  ALEF = "\u0627" # --> أ
+  BEH = "\u0628" # --> ب
+  TEH_MARBUTA = "\u0629" # --> ة
+  TEH = "\u062A" # --> ت
+  FEH = "\u0641" # --> ف
+  KAF = "\u0643" # --> ك
+  LAM = "\u0644" # --> ل
+  NOON = "\u0646" # --> ن
+  HEH = "\u0647" # --> ه
+  WAW = "\u0648" # --> و
+  YEH = "\u064A" # --> ي
 
   PREFIXES = {
     alef_lam:     ALEF + LAM,
@@ -22,7 +22,8 @@ class ArStemmer
     kaf_alef_lam: KAF + ALEF + LAM,
     feh_alef_lam: FEH + ALEF + LAM,
     lam_lam:      LAM + LAM,
-    waw:          WAW
+    waw:          WAW,
+    beh:          BEH
   }
 
   SUFFIXES = {
@@ -84,7 +85,7 @@ class ArStemmer
     end
 
     def starts_with_check_length(word, prefix)
-      if prefix.length == 1 && word.length < 4 # wa- prefix requires at least 3 characters
+      if prefix.length == 1 && word.length < 3 # 'waw' and 'beh' prefix requires at least 3 characters
         false
       elsif word.length < prefix.length + 2
         false
